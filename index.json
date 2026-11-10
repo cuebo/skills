@@ -2,12 +2,11 @@
   "schemaVersion": 1,
   "skills": [
     {
-      "id": "decision-record",
-      "name": "决策记录",
-      "description": "将选择、理由、风险与后续行动整理成可追溯的决策记录。",
-      "path": "decision-record",
-      "fileCount": 2,
-      "sourceURL": "https://github.com/cuebo/decision-record-skill/tree/main/decision-record"
+      "id": "pdf",
+      "name": "PDF",
+      "description": "读取、提取、合并、拆分、创建、填写和 OCR 处理 PDF 文件。",
+      "fileCount": 12,
+      "sourceURL": "https://github.com/anthropics/skills/tree/main/skills/pdf"
     }
   ]
 }
