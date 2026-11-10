@@ -6,7 +6,7 @@
 
 | Skill | 用途 |
 | --- | --- |
-| [`decision-record`](https://github.com/cuebo/decision-record-skill/tree/main/decision-record) | 把一次选择整理成可以追溯的决策记录 |
+| [`pdf`](https://github.com/anthropics/skills/tree/main/skills/pdf) | Anthropic 的 PDF 处理 Skill；读取、创建、填写和整理 PDF |
 
 ## 编写和发布
 
@@ -27,6 +27,6 @@ my-skill/
 
 App 会逐个下载目录内的文件并检查路径、数量和 `SKILL.md`。安装 Skill 不会运行脚本；Agent 只在启用该 Skill 后收到其元信息，需要正文时才调用 `skill_load`。如果 Skill 需要浏览器、插件、日历等能力，请在正文中写明前提和调用方式，仍以用户当前启用的能力和授权为准。
 
-`index.json` 中的 `sourceURL` 优先于 `path`。`decision-record` 暂时保留本仓库的同名目录和 `path` 作为旧版 App 的回退来源；新版本会从独立仓库安装。纯外部 Skill 可以只提供 `sourceURL`，无需复制文件到这里。
+`index.json` 中的 `sourceURL` 优先于 `path`。纯外部 Skill 可以只提供 `sourceURL`，无需复制文件到这里。PDF Skill 的文件和许可条款由 [Anthropic 原仓库](https://github.com/anthropics/skills/tree/main/skills/pdf)维护。
 
 Skill 已安装后可以在「我的 Skill」中查看文件。仓库发布更新时，当前版本不会自动覆盖用户的本地修改。
