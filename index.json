@@ -6,7 +6,8 @@
       "name": "决策记录",
       "description": "将选择、理由、风险与后续行动整理成可追溯的决策记录。",
       "path": "decision-record",
-      "fileCount": 2
+      "fileCount": 2,
+      "sourceURL": "https://github.com/cuebo/decision-record-skill/tree/main/decision-record"
     }
   ]
 }
