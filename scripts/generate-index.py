@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a Skill catalog from first-level SKILL.md frontmatter."""
+"""Generate a Skill catalog from local Skills and external source metadata."""
 import argparse
 import json
 import re
@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 INDEX = ROOT / "index.json"
+EXTERNAL = ROOT / "external-skills.json"
 VALID_ID = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
 
 
@@ -31,20 +32,34 @@ def metadata(path):
 
 
 def build():
-    entries = []
+    entries = {}
     for manifest in sorted(ROOT.glob("*/SKILL.md")):
         skill_id, title, description = metadata(manifest)
         files = [path for path in manifest.parent.rglob("*") if path.is_file()]
         if len(files) > 64:
             raise ValueError(f"too many files: {manifest.parent}")
-        entries.append({
+        entries[skill_id] = {
             "id": skill_id,
             "name": title,
             "description": description,
             "path": manifest.parent.name,
             "fileCount": len(files),
-        })
-    return json.dumps({"schemaVersion": 1, "skills": entries}, ensure_ascii=False, indent=2) + "\n"
+        }
+    external = json.loads(EXTERNAL.read_text(encoding="utf-8"))
+    for item in external["skills"]:
+        skill_id = item["id"]
+        source = item["sourceURL"]
+        if not VALID_ID.fullmatch(skill_id) or not source.startswith("https://"):
+            raise ValueError(f"invalid external Skill: {skill_id}")
+        if skill_id in entries:
+            local = entries[skill_id]
+            if any(local[key] != item[key] for key in ("name", "description", "fileCount")):
+                raise ValueError(f"external metadata differs from local fallback: {skill_id}")
+            local["sourceURL"] = source
+        else:
+            entries[skill_id] = item
+    return json.dumps({"schemaVersion": 1, "skills": [entries[key] for key in sorted(entries)]},
+                      ensure_ascii=False, indent=2) + "\n"
 
 
 def main():
