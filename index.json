@@ -7,6 +7,13 @@
       "description": "读取、提取、合并、拆分、创建、填写和 OCR 处理 PDF 文件。",
       "fileCount": 12,
       "sourceURL": "https://github.com/anthropics/skills/tree/main/skills/pdf"
+    },
+    {
+      "id": "screenshot-device-frame",
+      "name": "Screenshot Device Frame",
+      "description": "把手机/平板截图套进 iPhone、iPad、MacBook 机壳，生成 App Store 预览图或社媒配图。当用户要给截图加苹果手机外壳、做带设备的展示图、或需要透明/渐变背景的成品图时使用。",
+      "path": "screenshot-device-frame",
+      "fileCount": 7
     }
   ]
 }

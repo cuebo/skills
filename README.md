@@ -7,6 +7,7 @@
 | Skill | 用途 |
 | --- | --- |
 | [`pdf`](https://github.com/anthropics/skills/tree/main/skills/pdf) | Anthropic 的 PDF 处理 Skill；读取、创建、填写和整理 PDF |
+| [`screenshot-device-frame`](screenshot-device-frame/) | 把手机/平板截图套进 iPhone、iPad、MacBook 机壳，生成 App Store 预览图或社媒配图 |
 
 ## 编写和发布
 
